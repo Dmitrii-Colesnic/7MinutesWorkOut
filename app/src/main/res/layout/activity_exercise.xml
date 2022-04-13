@@ -26,6 +26,7 @@
         android:textSize="22sp"
         android:textColor="@color/yellow_lite"
         android:textStyle="bold"
+        android:layout_marginBottom="10dp"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -34,8 +35,8 @@
 
     <FrameLayout
         android:id="@+id/fl_progressbar"
-        android:layout_width="200dp"
-        android:layout_height="200dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/item_circular_color_accent_border"
 
@@ -55,13 +56,14 @@
             android:progressDrawable="@drawable/circular_progress_bar"
             android:indeterminate="false"
             android:max="10"
-            android:progress="100"
+            android:progress="10"
             android:rotation="-90"
             />
 
         <LinearLayout
-            android:layout_width="110dp"
-            android:layout_height="110dp"
+            android:id="@+id/ll_start_timer_button"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
             android:layout_gravity="center"
             android:background="@drawable/item_circular_color_accent_background"
             android:gravity="center">
@@ -69,9 +71,58 @@
                 android:id="@+id/tv_timer"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="10"
                 android:textStyle="bold"
                 android:textSize="25sp"
+                android:text="10"
+                />
+        </LinearLayout>
+
+    </FrameLayout>
+
+
+    <FrameLayout
+        android:id="@+id/fl_progressbarExercise"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/item_circular_color_accent_border"
+        android:visibility="gone"
+        tools:visibility="visible"
+
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        >
+
+        <ProgressBar
+            android:id="@+id/progressbarExercise"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_gravity="center"
+            android:background="@drawable/circular_progress_gray"
+            android:progressDrawable="@drawable/circular_progress_bar"
+            android:indeterminate="false"
+            android:max="30"
+            android:progress="30"
+            android:rotation="-90"
+            />
+
+        <LinearLayout
+            android:id="@+id/ll_start_timer_buttonExercise"
+            android:layout_width="85dp"
+            android:layout_height="85dp"
+            android:layout_gravity="center"
+            android:background="@drawable/item_circular_color_accent_background"
+            android:gravity="center">
+            <TextView
+                android:id="@+id/tv_timerExercise"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:textStyle="bold"
+                android:textSize="25sp"
+                android:text="30"
                 />
         </LinearLayout>
 
