@@ -15,6 +15,7 @@
     <color name="blue_dark">#000814</color>
     <color name="yellow_lite">#ffd60a</color>
     <color name="yellow_dark">#ffc300</color>
+    <color name="yellow_dark_dark">#f77f00</color>
 
     <color name="gary_lite">#ced4da</color>
     <color name="gary">#adb5bd</color>

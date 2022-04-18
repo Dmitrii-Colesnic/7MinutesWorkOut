@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="@color/black"
     tools:context=".ExerciseActivity">
-
+<!--
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar_exercise"
         android:layout_width="match_parent"
@@ -17,7 +17,7 @@
         app:titleTextColor="@color/yellow_lite"
         app:layout_constraintTop_toTopOf="parent"
         />
-
+-->
     <TextView
         android:id="@+id/tv_title"
         android:layout_width="wrap_content"
@@ -28,17 +28,21 @@
         android:textStyle="bold"
         android:layout_marginBottom="10dp"
 
+        android:visibility="gone"
+
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toTopOf="@id/fl_progressbar"
+        app:layout_constraintBottom_toTopOf="@id/fl_rest_view"
         />
 
     <FrameLayout
-        android:id="@+id/fl_progressbar"
+        android:id="@+id/fl_rest_view"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginTop="10dp"
         android:background="@drawable/item_circular_color_accent_border"
+
+        android:visibility="gone"
 
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
@@ -55,8 +59,8 @@
             android:background="@drawable/circular_progress_gray"
             android:progressDrawable="@drawable/circular_progress_bar"
             android:indeterminate="false"
-            android:max="10"
-            android:progress="10"
+            android:max="5"
+            android:progress="100"
             android:rotation="-90"
             />
 
@@ -79,9 +83,46 @@
 
     </FrameLayout>
 
+    <ImageView
+        android:id="@+id/iv_exercise"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+
+        android:scaleType="fitXY"
+
+        app:layout_constraintTop_toTopOf="parent"
+
+        tools:layout_editor_absoluteX="0dp"
+        tools:src="@drawable/ic_pullups_400x500" />
+
+    <TextView
+        android:id="@+id/tv_exercise_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="EXERCISE NAME"
+        android:textColor="@color/yellow_lite"
+        android:textSize="22sp"
+        android:textStyle="bold"
+
+        app:layout_constraintTop_toBottomOf="@id/iv_exercise"
+        tools:layout_editor_absoluteX="0dp" />
+
+    <TextView
+        android:id="@+id/tv_amount_reps"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="amount of reps"
+        android:textColor="@color/yellow_lite"
+        android:textSize="20sp"
+        android:textStyle="bold"
+
+        app:layout_constraintTop_toBottomOf="@id/tv_exercise_name"
+        />
 
     <FrameLayout
-        android:id="@+id/fl_progressbarExercise"
+        android:id="@+id/fl_exercise_view"
         android:layout_width="150dp"
         android:layout_height="150dp"
         android:layout_marginTop="10dp"
@@ -90,7 +131,7 @@
         tools:visibility="visible"
 
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tv_amount_reps"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintBottom_toBottomOf="parent"
         >
@@ -104,8 +145,8 @@
             android:background="@drawable/circular_progress_gray"
             android:progressDrawable="@drawable/circular_progress_bar"
             android:indeterminate="false"
-            android:max="30"
-            android:progress="30"
+            android:max="2"
+            android:progress="2"
             android:rotation="-90"
             />
 
@@ -114,15 +155,15 @@
             android:layout_width="85dp"
             android:layout_height="85dp"
             android:layout_gravity="center"
-            android:background="@drawable/item_circular_color_accent_background"
+            android:background="@drawable/item_circular_color_accent_ripple_background"
             android:gravity="center">
             <TextView
                 android:id="@+id/tv_timerExercise"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:textStyle="bold"
-                android:textSize="25sp"
-                android:text="30"
+                android:textSize="23sp"
+                android:text="Next"
                 />
         </LinearLayout>
 
