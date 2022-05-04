@@ -1,24 +1,31 @@
 package com.example.a7minutesworkout
 
+import android.content.Intent
+import android.media.MediaPlayer
+import android.net.Uri
 import android.opengl.Visibility
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
+import android.speech.tts.TextToSpeech
+import android.util.Log
 import android.view.View
+import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a7minutesworkout.databinding.ActivityExerciseBinding
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.concurrent.timer
 
-class ExerciseActivity : AppCompatActivity() {
+class ExerciseActivity : AppCompatActivity()/*, TextToSpeech.OnInitListener */{
 
     private var binding: ActivityExerciseBinding? = null
 
     private var restTimer: CountDownTimer? = null
     private var restProgress = 0
     private var restTime = 0
-    private var bigRest = 10
+    private var bigRest = 2
 
     private var exerciseProgress = 1
     private var exerciseAmount = 0
@@ -29,10 +36,24 @@ class ExerciseActivity : AppCompatActivity() {
     private var workoutPlan: Queue<WorkoutPlan>? = null
     private var amountSupersets = 1
 
+//    private var tts: TextToSpeech? = null
+    private var player: MediaPlayer? = null
+
+    private var exerciseAdapter: ExerciseStatusAdapter? = null
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         binding = ActivityExerciseBinding.inflate(layoutInflater)
         setContentView(binding?.root)
+
+        try {
+            var soundURI = Uri.parse("android.resource://com.example.a7minutesworkout/" + R.raw.press_start)
+
+            player = MediaPlayer.create(applicationContext, soundURI)
+            player?.isLooping = false
+        }catch (e: Exception){
+            e.printStackTrace()
+        }
 /*
         Toolbar
 
@@ -49,23 +70,53 @@ class ExerciseActivity : AppCompatActivity() {
         exerciseList = Constants.defaultExerciseList()
         workoutPlan = Constants.defineWorkoutPlan()
 
+        setUpExerciseStatusRecyclerView()
+
+//        tts = TextToSpeech(this, this)
+
         setUpExerciseView()
 
     }
 
-    private fun setUpRestView(){
-        binding?.flRestView?.visibility = View.VISIBLE
-        binding?.tvTitle?.visibility = View.VISIBLE
+    private fun setUpExerciseStatusRecyclerView(){
+        binding?.rvExerciseStatus?.layoutManager =
+            LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
-        binding?.ivExercise?.visibility = View.INVISIBLE
-        binding?.tvExerciseName?.visibility = View.INVISIBLE
-        binding?.flExerciseView?.visibility = View.INVISIBLE
-        binding?.tvAmountReps?.visibility = View.INVISIBLE
+        exerciseAdapter = ExerciseStatusAdapter(exerciseList!!)
+        binding?.rvExerciseStatus?.adapter = exerciseAdapter
+    }
+
+    private fun setUpRestView(){
+        binding?.clExercise?.visibility = View.GONE
+        binding?.clRest?.visibility = View.VISIBLE
+
+        if(restTime == workoutPlan?.peek()?.getRestTime()){
+
+            binding?.tvCongratulations?.visibility = View.GONE
+            binding?.tvNextSets?.visibility = View.GONE
+            binding?.tvAnnouncementExercise?.visibility = View.VISIBLE
+            binding?.tvNextExercise?.visibility = View.VISIBLE
+            binding?.tvNextExercise?.text = exerciseList!![currentExercisePosition+1].getName()
+
+        }else{
+
+            binding?.tvAnnouncementExercise?.visibility = View.GONE
+            binding?.tvNextExercise?.visibility = View.GONE
+            binding?.tvCongratulations?.visibility = View.VISIBLE
+            binding?.tvNextSets?.visibility = View.VISIBLE
+            var nextSet = "next superset, ${workoutPlan?.peek()?.getAmountSupersets()} " +
+                    "sets of ${workoutPlan?.peek()?.getAmountExercises()} exercises"
+            binding?.tvNextSets?.text = nextSet
+
+        }
 
         if(restTimer != null){
             restTimer?.cancel()
             restProgress = 0
         }
+
+        exerciseList!![currentExercisePosition].setIsSelected(true)
+        exerciseAdapter!!.notifyDataSetChanged()
 
         setRestProgressBar()
     }
@@ -76,12 +127,19 @@ class ExerciseActivity : AppCompatActivity() {
 
         restTimer = object : CountDownTimer((restTime * 1000).toLong(), 1000){
             override fun onTick(p0: Long) {
+                if(restTime - restProgress == 4){
+                    player?.start()
+                }
+
                 restProgress++
                 binding?.tvTimer?.text = (restTime - restProgress).toString()
                 binding?.progressbar?.progress = restTime - restProgress
             }
 
             override fun onFinish() {
+                exerciseList!![currentExercisePosition].setIsSelected(false)
+                exerciseAdapter!!.notifyDataSetChanged()
+
                 setUpExerciseView()
             }
         }.start()
@@ -89,13 +147,8 @@ class ExerciseActivity : AppCompatActivity() {
     }
 
     private fun setUpExerciseView(){
-        binding?.flRestView?.visibility = View.INVISIBLE
-        binding?.tvTitle?.visibility = View.INVISIBLE
-
-        binding?.ivExercise?.visibility = View.VISIBLE
-        binding?.tvExerciseName?.visibility = View.VISIBLE
-        binding?.flExerciseView?.visibility = View.VISIBLE
-        binding?.tvAmountReps?.visibility = View.VISIBLE
+        binding?.clRest?.visibility = View.GONE
+        binding?.clExercise?.visibility = View.VISIBLE
 
         workoutPlan?.peek()?.let {
             exerciseAmount = it.getAmountExercises()
@@ -106,6 +159,8 @@ class ExerciseActivity : AppCompatActivity() {
         binding?.ivExercise?.setImageResource(exerciseList!![currentExercisePosition].getImage())
         binding?.tvExerciseName?.text = exerciseList!![currentExercisePosition].getName()
         binding?.tvAmountReps?.text = exerciseList!![currentExercisePosition].getRepsAmount()
+
+//        speakOut(binding?.tvExerciseName?.text.toString())
 
         binding?.flExerciseView?.setOnClickListener {
             setExerciseProgressBar()
@@ -132,13 +187,8 @@ class ExerciseActivity : AppCompatActivity() {
                             //need go to another circle
                             workoutPlan?.poll()
                             if (workoutPlan?.iterator()?.hasNext() == false) {
-                                Toast.makeText(
-                                    this@ExerciseActivity,
-                                    "Celebration!",
-                                    Toast.LENGTH_SHORT
-                                )
-                                    .show()
-                                onDestroy()
+                                startActivity(Intent(this, FinishActivity::class.java))
+                                finish()
                             }
                             amountSupersets = 1
                             restTime = bigRest
@@ -165,8 +215,37 @@ class ExerciseActivity : AppCompatActivity() {
             restTimer?.cancel()
             restProgress = 0
         }
+/*
+        if(tts != null) {
+            tts!!.stop()
+            tts!!.shutdown()
+        }
+*/
+        if(player != null){
+            player!!.stop()
+        }
 
         binding = null
     }
+/*
+    override fun onInit(status: Int) {
+        if(status == TextToSpeech.SUCCESS){
 
+            val result = tts?.setLanguage(Locale.US)
+
+            if (result == TextToSpeech.LANG_MISSING_DATA ||
+                result ==TextToSpeech.LANG_NOT_SUPPORTED
+            ){
+                Log.e("TTS", "The Language Specified is not supported!")
+            }
+
+        } else {
+            Log.e("TTS", "Initialized Failed!")
+        }
+    }
+
+    private fun speakOut(text: String){
+        tts!!.speak(text, TextToSpeech.QUEUE_FLUSH, null, "")
+    }
+*/
 }

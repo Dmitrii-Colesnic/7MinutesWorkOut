@@ -131,9 +131,9 @@ object Constants {
 
         val press1: ExerciseModel = ExerciseModel(
             12,
-            "Raising straight legs on the horizontal bar",
+            "Raising Legs On The Horizontal Bar",
             "10 reps",
-            R.drawable.press_400x500_1,
+            R.drawable.ic_press_400x500_1,
             isCompleted = false,
             isSelected = false
         )
@@ -161,9 +161,9 @@ object Constants {
 
         val press2: ExerciseModel = ExerciseModel(
             15,
-            "Raising straight legs on the horizontal bar",
+            "Raising Legs On The Horizontal Bar",
             "10 reps",
-            R.drawable.press_400x500_2,
+            R.drawable.ic_press_400x500_2,
             isCompleted = false,
             isSelected = false
         )
@@ -191,9 +191,9 @@ object Constants {
 
         val press3: ExerciseModel = ExerciseModel(
             18,
-            "Raising straight legs on the horizontal bar",
+            "Raising Legs On The Horizontal Bar",
             "10 reps",
-            R.drawable.press_400x500_3,
+            R.drawable.ic_press_400x500_3,
             isCompleted = false,
             isSelected = false
         )
@@ -221,9 +221,9 @@ object Constants {
 
         val press4: ExerciseModel = ExerciseModel(
             21,
-            "raising straight legs on the horizontal bar",
+            "Raising Legs On The Horizontal Bar",
             "10 reps",
-            R.drawable.press_400x500_4,
+            R.drawable.ic_press_400x500_4,
             isCompleted = false,
             isSelected = false
         )
@@ -240,7 +240,7 @@ object Constants {
         exerciseList.add(pullUps2_5)
 
         val pushUps2_5: ExerciseModel = ExerciseModel(
-            25,
+            24,
             "Push-Ups On Wide Bars",
             "15 reps",
             R.drawable.ic_pushups_400x500_2_5,
@@ -250,10 +250,10 @@ object Constants {
         exerciseList.add(pushUps2_5)
 
         val press5: ExerciseModel = ExerciseModel(
-            24,
-            "raising straight legs on the horizontal bar",
+            25,
+            "Raising Legs On The Horizontal Bar",
             "10 reps",
-            R.drawable.press_400x500_5,
+            R.drawable.ic_press_400x500_5,
             isCompleted = false,
             isSelected = false
         )
@@ -269,14 +269,14 @@ object Constants {
         val firstCircle = WorkoutPlan(
             2,
             5,
-            2
+            1
         )
         workoutPlan.add(firstCircle)
 
         val secondCircle = WorkoutPlan(
             3,
             5,
-            2
+            1
         )
         workoutPlan.add(secondCircle)
 
