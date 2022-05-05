@@ -1,5 +1,7 @@
 package com.example.a7minutesworkout
 
+import android.app.AlertDialog
+import android.app.Dialog
 import android.content.Intent
 import android.media.MediaPlayer
 import android.net.Uri
@@ -9,11 +11,15 @@ import android.os.Bundle
 import android.os.CountDownTimer
 import android.speech.tts.TextToSpeech
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.widget.Button
 import android.widget.LinearLayout
 import android.widget.Toast
+import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a7minutesworkout.databinding.ActivityExerciseBinding
+import com.example.a7minutesworkout.databinding.DialogCustomBackConfirmationBinding
 import java.util.*
 import kotlin.collections.ArrayList
 import kotlin.concurrent.timer
@@ -227,6 +233,27 @@ class ExerciseActivity : AppCompatActivity()/*, TextToSpeech.OnInitListener */{
 
         binding = null
     }
+
+    override fun onBackPressed() {
+
+        val dialog = Dialog(this@ExerciseActivity)
+        val dialogBinding = DialogCustomBackConfirmationBinding.inflate(layoutInflater)
+        dialog.setContentView(dialogBinding.root)
+
+        dialogBinding.btnYes.setOnClickListener {
+            this@ExerciseActivity.finish()
+            dialog.dismiss()
+        }
+
+        dialogBinding.btnNo.setOnClickListener {
+            dialog.dismiss()
+        }
+
+        dialog.show()
+
+    }
+
+
 /*
     override fun onInit(status: Int) {
         if(status == TextToSpeech.SUCCESS){
