@@ -20,15 +20,18 @@
         <item name="android:statusBarColor" tools:targetApi="l">?attr/colorPrimaryVariant</item>
         -->
 
-
         <!-- My customize settings -->
         <!-- Status Bar Transparent -->
         <item name="android:windowTranslucentStatus">true</item>
 
+        <!-- Hint Text Color
+        <item name="android:textColorHint">@color/yellow_lite</item>
+        -->
     </style>
 
-    <!--Toolbar theme-->
+    <!--Toolbar theme(not used)-->
     <style name="ToolbarTheme" parent="@style/ThemeOverlay.MaterialComponents.ActionBar">
+    <!-- -->
         <item name="colorControlNormal">@color/yellow_lite</item>
     </style>
 

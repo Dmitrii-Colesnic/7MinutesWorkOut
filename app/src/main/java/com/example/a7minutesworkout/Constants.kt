@@ -269,14 +269,14 @@ object Constants {
         val firstCircle = WorkoutPlan(
             2,
             5,
-            1
+            60
         )
         workoutPlan.add(firstCircle)
 
         val secondCircle = WorkoutPlan(
             3,
             5,
-            1
+            60
         )
         workoutPlan.add(secondCircle)
 

@@ -1,28 +1,17 @@
 package com.example.a7minutesworkout
 
-import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Intent
 import android.media.MediaPlayer
 import android.net.Uri
-import android.opengl.Visibility
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.CountDownTimer
-import android.speech.tts.TextToSpeech
-import android.util.Log
-import android.view.LayoutInflater
 import android.view.View
-import android.widget.Button
-import android.widget.LinearLayout
-import android.widget.Toast
-import androidx.appcompat.widget.AppCompatButton
+import androidx.appcompat.app.AppCompatActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.a7minutesworkout.databinding.ActivityExerciseBinding
 import com.example.a7minutesworkout.databinding.DialogCustomBackConfirmationBinding
 import java.util.*
-import kotlin.collections.ArrayList
-import kotlin.concurrent.timer
 
 class ExerciseActivity : AppCompatActivity()/*, TextToSpeech.OnInitListener */{
 
@@ -31,7 +20,7 @@ class ExerciseActivity : AppCompatActivity()/*, TextToSpeech.OnInitListener */{
     private var restTimer: CountDownTimer? = null
     private var restProgress = 0
     private var restTime = 0
-    private var bigRest = 2
+    private var bigRest = 600
 
     private var exerciseProgress = 1
     private var exerciseAmount = 0
@@ -53,7 +42,7 @@ class ExerciseActivity : AppCompatActivity()/*, TextToSpeech.OnInitListener */{
         setContentView(binding?.root)
 
         try {
-            var soundURI = Uri.parse("android.resource://com.example.a7minutesworkout/" + R.raw.press_start)
+            val soundURI = Uri.parse("android.resource://com.example.a7minutesworkout/" + R.raw.press_start)
 
             player = MediaPlayer.create(applicationContext, soundURI)
             player?.isLooping = false
@@ -110,7 +99,7 @@ class ExerciseActivity : AppCompatActivity()/*, TextToSpeech.OnInitListener */{
             binding?.tvNextExercise?.visibility = View.GONE
             binding?.tvCongratulations?.visibility = View.VISIBLE
             binding?.tvNextSets?.visibility = View.VISIBLE
-            var nextSet = "next superset, ${workoutPlan?.peek()?.getAmountSupersets()} " +
+            val nextSet = "next superset, ${workoutPlan?.peek()?.getAmountSupersets()} " +
                     "sets of ${workoutPlan?.peek()?.getAmountExercises()} exercises"
             binding?.tvNextSets?.text = nextSet
 

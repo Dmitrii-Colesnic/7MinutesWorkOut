@@ -8,6 +8,10 @@
         <entry key="..\:/Kotlin/7MinutesWorkOut2/app/src/main/res/drawable/circular_progress_bar.xml" value="0.2703125" />
         <entry key="..\:/Kotlin/7MinutesWorkOut2/app/src/main/res/drawable/circular_progress_gray.xml" value="0.2703125" />
         <entry key="..\:/Kotlin/7MinutesWorkOut2/app/src/main/res/drawable/dialog_custom_button.xml" value="0.2526041666666667" />
+        <entry key="..\:/Kotlin/7MinutesWorkOut2/app/src/main/res/drawable/edit_text_background_border.xml" value="0.13229166666666667" />
+        <entry key="..\:/Kotlin/7MinutesWorkOut2/app/src/main/res/drawable/edittext_background_border.xml" value="0.2526041666666667" />
+        <entry key="..\:/Kotlin/7MinutesWorkOut2/app/src/main/res/drawable/edittext_cursor_color.xml" value="0.2526041666666667" />
+        <entry key="..\:/Kotlin/7MinutesWorkOut2/app/src/main/res/drawable/edittext_selected_background_border.xml" value="0.2526041666666667" />
         <entry key="..\:/Kotlin/7MinutesWorkOut2/app/src/main/res/drawable/ic_launcher_background.xml" value="0.2703125" />
         <entry key="..\:/Kotlin/7MinutesWorkOut2/app/src/main/res/drawable/item_circulac_color_gray_background.xml" value="0.2526041666666667" />
         <entry key="..\:/Kotlin/7MinutesWorkOut2/app/src/main/res/drawable/item_circular_accent_border_ripple_background.xml" value="0.2703125" />
@@ -18,9 +22,13 @@
         <entry key="..\:/Kotlin/7MinutesWorkOut2/app/src/main/res/drawable/item_finish_circular_accent_border_ripple_background.xml" value="0.1390625" />
         <entry key="..\:/Kotlin/7MinutesWorkOut2/app/src/main/res/drawable/item_finish_circular_color_accent_border.xml" value="0.1390625" />
         <entry key="..\:/Kotlin/7MinutesWorkOut2/app/src/main/res/drawable/item_selected_circular_color_yellow_background.xml" value="0.26458333333333334" />
+        <entry key="..\:/Kotlin/7MinutesWorkOut2/app/src/main/res/drawable/radiobutton_units_tab_selector.xml" value="0.2526041666666667" />
+        <entry key="..\:/Kotlin/7MinutesWorkOut2/app/src/main/res/drawable/radiobutton_units_tab_text_color_selector.xml" value="0.2526041666666667" />
+        <entry key="..\:/Kotlin/7MinutesWorkOut2/app/src/main/res/drawable/radiogroup_tab_background.xml" value="0.2526041666666667" />
+        <entry key="..\:/Kotlin/7MinutesWorkOut2/app/src/main/res/layout/activity_bmi.xml" value="0.2" />
         <entry key="..\:/Kotlin/7MinutesWorkOut2/app/src/main/res/layout/activity_exercise.xml" value="0.264" />
-        <entry key="..\:/Kotlin/7MinutesWorkOut2/app/src/main/res/layout/activity_finish.xml" value="0.144" />
-        <entry key="..\:/Kotlin/7MinutesWorkOut2/app/src/main/res/layout/activity_main.xml" value="0.2" />
+        <entry key="..\:/Kotlin/7MinutesWorkOut2/app/src/main/res/layout/activity_finish.xml" value="0.1" />
+        <entry key="..\:/Kotlin/7MinutesWorkOut2/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Kotlin/7MinutesWorkOut2/app/src/main/res/layout/dialog_custom_back_confirmation.xml" value="0.264" />
         <entry key="..\:/Kotlin/7MinutesWorkOut2/app/src/main/res/layout/item_exercise_status.xml" value="0.264" />
       </map>
